@@ -30,30 +30,36 @@ class _HomeScreenState extends State<HomeScreen> {
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: MyThemeData.whiteColor,
-            width: 4,
+            width: 5,
           ),
+          borderRadius: BorderRadius.circular(35),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: (index) {
-          selectedIndex = index;
-          setState(() {});
-        },
-        items: [
-          BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage("assets/images/icon_list.png"),
-              ),
-              label: "Task List"),
-          BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage("assets/images/icon_settings.png"),
-              ),
-              label: "Settings"),
-        ],
+      bottomNavigationBar: BottomAppBar(
+        shape:CircularNotchedRectangle(),
+        notchMargin: 8,
+        child: BottomNavigationBar(
+          currentIndex: selectedIndex,
+          onTap: (index) {
+            selectedIndex = index;
+            setState(() {});
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: ImageIcon(
+                  AssetImage("assets/images/icon_list.png"),
+                ),
+                label: "Task List"),
+            BottomNavigationBarItem(
+                icon: ImageIcon(
+                  AssetImage("assets/images/icon_settings.png"),
+                ),
+                label: "Settings"),
+          ],
+        ),
       ),
+    body: ,
     );
   }
 }

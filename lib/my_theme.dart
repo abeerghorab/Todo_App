@@ -9,19 +9,21 @@ class MyThemeData {
   static const Color greyColor = Colors.grey;
   static const Color backgroundlightColor = Color(0xffDFECDB);
   static ThemeData lightTheme = ThemeData(
-      primaryColor: primaryLightColor,
-      scaffoldBackgroundColor: backgroundlightColor,
-      appBarTheme:
-          AppBarTheme(backgroundColor: primaryLightColor, elevation: 0),
-      primaryTextTheme: TextTheme(
-        headline1: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-          color: whiteColor,
-        ),
+    primaryColor: primaryLightColor,
+    scaffoldBackgroundColor: backgroundlightColor,
+    appBarTheme: AppBarTheme(backgroundColor: primaryLightColor, elevation: 0),
+    primaryTextTheme: TextTheme(
+      headline1: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+        color: whiteColor,
       ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        selectedItemColor: primaryLightColor,
-        unselectedItemColor: greyColor,
-      ));
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: primaryLightColor,
+      unselectedItemColor: greyColor,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+    ),
+  );
 }
