@@ -23,6 +23,11 @@ class MyThemeData {
         fontWeight: FontWeight.bold,
         color: blackColor,
       ),
+      subtitle2: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: blackColor,
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: primaryLightColor,
