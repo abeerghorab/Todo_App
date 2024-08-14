@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/home/settings/settings_tab.dart';
+import 'package:todo_app/home/task_list/add_task_bottom_sheet.dart';
+import 'package:todo_app/home/task_list/task_list_tab.dart';
 import 'package:todo_app/my_theme.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: MyThemeData.primaryLightColor,
-        onPressed: () {},
+        onPressed: () {
+          addTaskBottomSheet();
+        },
         child: Icon(
           Icons.add,
           size: 30,
@@ -30,36 +35,48 @@ class _HomeScreenState extends State<HomeScreen> {
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: MyThemeData.whiteColor,
-            width: 5,
+            width: 4,
           ),
           borderRadius: BorderRadius.circular(35),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape:CircularNotchedRectangle(),
         notchMargin: 8,
-        child: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: (index) {
-            selectedIndex = index;
-            setState(() {});
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage("assets/images/icon_list.png"),
-                ),
-                label: "Task List"),
-            BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage("assets/images/icon_settings.png"),
-                ),
-                label: "Settings"),
-          ],
+        shape: CircularNotchedRectangle(),
+        child: SingleChildScrollView(
+          child: BottomNavigationBar(
+            currentIndex: selectedIndex,
+            onTap: (index) {
+              selectedIndex = index;
+              setState(() {});
+            },
+            items: [
+              BottomNavigationBarItem(
+                  icon: ImageIcon(
+                    AssetImage("assets/images/icon_list.png"),
+                  ),
+                  label: "Task List"),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(
+                    AssetImage("assets/images/icon_settings.png"),
+                  ),
+                  label: "Settings"),
+            ],
+          ),
         ),
       ),
-    body: ,
+      body: tabs[selectedIndex],
     );
+  }
+
+  List<Widget> tabs = [
+    TaskListTab(),
+    SettingsTab(),
+  ];
+
+  void addTaskBottomSheet() {
+    showModalBottomSheet(
+        context: context, builder: (context) => AddTaskBottomSheet());
   }
 }
