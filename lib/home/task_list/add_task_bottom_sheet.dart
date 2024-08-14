@@ -30,7 +30,7 @@ class AddTaskBottomSheet extends StatelessWidget {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Enter task title",
+                      hintText: "Enter task description",
                     ),
                     minLines: 4,
                     maxLines: 4,
