@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: Icon(
           Icons.add,
+          color: MyThemeData.whiteColor,
           size: 30,
         ),
         shape: RoundedRectangleBorder(
