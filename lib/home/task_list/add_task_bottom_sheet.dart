@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
-class AddTaskBottomSheet extends StatelessWidget {
+class AddTaskBottomSheet extends StatefulWidget {
+  @override
+  State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
+}
+
+class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
+  String title = "";
+
+  String description = "";
+  DateTime selectedDate = DateTime.now();
+  var formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -18,12 +29,22 @@ class AddTaskBottomSheet extends StatelessWidget {
               height: 18,
             ),
             Form(
+              key: formkey,
               child: Column(
                 children: [
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: "Enter task title",
                     ),
+                    onChanged: (text) {
+                      title = text;
+                    },
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return "please enter task title"; //invalid
+                      }
+                      return null; //validate
+                    },
                   ),
                   SizedBox(
                     height: 18,
@@ -32,6 +53,15 @@ class AddTaskBottomSheet extends StatelessWidget {
                     decoration: InputDecoration(
                       hintText: "Enter task description",
                     ),
+                    onChanged: (text) {
+                      description = text;
+                    },
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return "please enter task description"; //invalid
+                      }
+                      return null; //validate
+                    },
                     minLines: 4,
                     maxLines: 4,
                   ),
@@ -51,9 +81,10 @@ class AddTaskBottomSheet extends StatelessWidget {
             InkWell(
               onTap: () {
                 //show calender
+                chooseDate();
               },
               child: Text(
-                "14/8/2024",
+                "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
                 style: Theme.of(context).primaryTextTheme.subtitle2,
                 textAlign: TextAlign.center,
               ),
@@ -63,7 +94,9 @@ class AddTaskBottomSheet extends StatelessWidget {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-              onPressed: () {},
+              onPressed: () {
+                addTask();
+              },
               child: Text(
                 "Add",
                 style: Theme.of(context).primaryTextTheme.headline1,
@@ -73,5 +106,24 @@ class AddTaskBottomSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void chooseDate() async {
+    var chosenDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)),
+    );
+    if (chosenDate != null) {
+      selectedDate = chosenDate;
+      setState(() {});
+    }
+  }
+
+  void addTask() {
+    if (formkey.currentState?.validate() == true) {
+      //validate add task
+    }
   }
 }
